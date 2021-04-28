@@ -1,1 +1,1 @@
-web: gunicorn gohannblog.wsgi
+web: gunicorn gohannblog.wsgi --log-file -
