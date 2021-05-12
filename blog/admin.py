@@ -14,3 +14,7 @@ class TagAdmin(admin.ModelAdmin):
 @admin.register(models.Post)
 class PostAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(models.Item)
+class ItemModelAdmin(admin.ModelAdmin):
+    pass

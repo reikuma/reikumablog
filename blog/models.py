@@ -22,6 +22,14 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+class Item(models.Model):
+    name = models.ImageField(
+        upload_to='media',
+        blank=True,
+        null=True)
+
+    def __str__(self):
+        return self.name
 
 class Post(models.Model):
     created = models.DateTimeField(
@@ -52,6 +60,12 @@ class Post(models.Model):
     tags = models.ManyToManyField(
         Tag,
         blank=True)
+
+    image = models.ImageField(
+        Item,
+        upload_to='images',
+        blank=True,
+        null=True)
 
     def __str__(self):
         return self.title
