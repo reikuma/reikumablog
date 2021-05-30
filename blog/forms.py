@@ -1,7 +1,14 @@
 from django import forms
-from .models import Item
+from .models import Blog
 
-class ItemForm(forms.ModelForm):
+from django_summernote.widgets import SummernoteWidget
+
+
+class BlogForm(forms.ModelForm):
+
     class Meta:
-        model = Item
-        fields = '__all__'
+        model = Blog
+        fields = ('title', 'text')
+        widgets = {
+                'text': SummernoteWidget(),
+        }

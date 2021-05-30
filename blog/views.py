@@ -1,30 +1,29 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from .models import Post
-#ItemModel
-from  .forms import ItemForm
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Blog
+from .forms import BlogForm
+from django.http import JsonResponse
 
-class Index(ListView):
-    model = Post
+def index(request):
+    blog = Blog.objects.order_by('-id')
+    return render(request, 'blog/index.html', {'blog': blog })
 
-# 個別
-class Detail(DetailView):
-    model = Post
 
-from django.views.generic.edit import CreateView
 
-class Create(CreateView):
-    model = Post
-    fields = ["title", "body", "category", "tags", "image"]
 
-from django.views.generic.edit import UpdateView
+def detail(request, blog_id):
+    blog_text = get_object_or_404(Blog, id=blog_id)
+    return render(request, 'blog/detail.html', {'blog_text': blog_text })
 
-class Update(UpdateView):
-    model = Post
-    fields = ["title", "body", "category", "tags", "image"]
+def add_form(request):
 
-from django.views.generic.edit import DeleteView
+    if request.method == "POST":
+        form = BlogForm(request.POST)
 
-class Delete(DeleteView):
-    model = Post
-    success_url = "/"
+        if form.is_valid():
+            form.save()
+            return redirect('blog:index')
+
+    else:
+        form = BlogForm
+
+    return render(request, 'blog/form.html', {'form': form })

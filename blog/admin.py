@@ -1,20 +1,12 @@
 from django.contrib import admin
-from . import models
+from .models import Blog
 
-@admin.register(models.Category)
-class CategoryAdmin(admin.ModelAdmin):
-    pass
+from django_summernote.admin import SummernoteModelAdmin
 
 
-@admin.register(models.Tag)
-class TagAdmin(admin.ModelAdmin):
-    pass
+class BlogAdmin(SummernoteModelAdmin):
+    summernote_fields = '__all__'
 
 
-@admin.register(models.Post)
-class PostAdmin(admin.ModelAdmin):
-    pass
+admin.site.register(Blog, BlogAdmin)
 
-@admin.register(models.Item)
-class ItemModelAdmin(admin.ModelAdmin):
-    pass

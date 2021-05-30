@@ -1,74 +1,18 @@
 from django.db import models
 from django.urls import reverse_lazy
 
-class Category(models.Model):
-    name = models.CharField(
-        max_length=255,
-        blank=False,
-        null=False,
-        unique=True)
+from django.utils import timezone
+from django.contrib.auth.models import User
 
-    def __str__(self):
-        return self.name
-
-
-class Tag(models.Model):
-    name = models.CharField(
-        max_length=255,
-        blank=False,
-        null=False,
-        unique=True)
-
-    def __str__(self):
-        return self.name
-
-class Item(models.Model):
-    name = models.ImageField(
-        upload_to='media',
-        blank=True,
-        null=True)
-
-    def __str__(self):
-        return self.name
-
-class Post(models.Model):
-    created = models.DateTimeField(
-        auto_now_add=True,
-        editable=False,
-        blank=False,
-        null=False)
-
-    updated = models.DateTimeField(
-        auto_now=True,
-        editable=False,
-        blank=False,
-        null=False)
-
-    title = models.CharField(
-        max_length=255,
-        blank=False,
-        null=False)
-
-    body = models.TextField(
-        blank=True,
-        null=False)
-
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.CASCADE)
-
-    tags = models.ManyToManyField(
-        Tag,
-        blank=True)
-
-    image = models.ImageField(
-        Item,
-        upload_to='images',
-        blank=True,
-        null=True)
+class Blog(models.Model):
+    title = models.CharField('タイトル', max_length=50)
+    text = models.TextField('テキスト')
+    created_at = models.DateField('作成日', auto_now_add=True)
+    updated_at = models.DateField('更新日', auto_now=True)
 
     def __str__(self):
         return self.title
 
-    def get_absolute_url(self):
-        return reverse_lazy("detail", args=[self.id])
+    class Meta:
+        verbose_name = 'ブログ'
+        verbose_name_plural = 'ブログ'
