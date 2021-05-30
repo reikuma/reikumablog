@@ -27,3 +27,13 @@ def add_form(request):
         form = BlogForm
 
     return render(request, 'blog/form.html', {'form': form })
+
+def good(request, pk):
+    """いいねボタンをクリック."""
+    post = get_object_or_404(Blog, pk=pk)
+
+    if request.method == 'POST':
+        post.good += 1
+        post.save()
+
+    return redirect('board:board')

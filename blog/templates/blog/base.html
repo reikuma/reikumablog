@@ -14,6 +14,10 @@
         </nav>
         <div class="container mt-4"></div>
         {% block content %}
+        <form action="{% url 'board:good' post.pk %}" method="post">
+            {% csrf_token %}
+            <input type="submit" name="good" value="いいね" id="test">（{{ post.good }} いいね）
+        </form>
         {% endblock %}
     </body>
 </html>
