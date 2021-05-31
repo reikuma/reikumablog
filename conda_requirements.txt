@@ -2,7 +2,7 @@
 # $ conda create --name <env> --file <this file>
 # platform: osx-64
 asgiref=3.3.4=pypi_0
-ca-certificates=2021.4.13=hecd8cb5_1
+ca-certificates=2021.5.25=hecd8cb5_1
 certifi=2020.12.5=py39hecd8cb5_0
 chardet=4.0.0=pypi_0
 dj-database-url=0.5.0=pypi_0
@@ -17,8 +17,8 @@ libffi=3.3=hb1e8313_2
 ncurses=6.2=h0a44026_1
 openssl=1.1.1k=h9ed2024_0
 pillow=8.2.0=pypi_0
-pip=21.0.1=py39hecd8cb5_0
-python=3.9.4=h88f2d9e_0
+pip=21.1.1=py39hecd8cb5_0
+python=3.9.5=h88f2d9e_3
 python-dateutil=1.5=pypi_0
 pytz=2021.1=pypi_0
 readline=8.1=h9ed2024_0
